@@ -1,5 +1,6 @@
 package com.example.JWT.jwt.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ public class TestController {
 
     @GetMapping("/user")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @SecurityRequirement(name = "bearerAuth")
     public String userAccess() {
         return "User Content.";
     }
